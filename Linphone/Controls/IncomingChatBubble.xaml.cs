@@ -46,7 +46,7 @@ namespace Linphone.Controls {
 
             this.Holding += Bubble_Holding;
             string fileName = (message.FileTransferInformation != null) ? message.FileTransferInformation.Name : null;
-            string filePath = message.FileTransferFilepath;
+            string filePath = message.Contents.GetEnumerator().Current.FilePath;
             bool isImageMessage = fileName != null && fileName.Length > 0;
             if (isImageMessage) {
                 Message.Visibility = Visibility.Collapsed;
@@ -64,7 +64,7 @@ namespace Linphone.Controls {
                 Message.Visibility = Visibility.Visible;
                 Image.Visibility = Visibility.Collapsed;
                 Download.Visibility = Visibility.Collapsed;
-                Message.Blocks.Add(Utils.FormatText(message.Text));
+                Message.Blocks.Add(Utils.FormatText(message.TextContent));
             }
         }
 
@@ -144,7 +144,7 @@ namespace Linphone.Controls {
             string fileName = (ChatMessage.FileTransferInformation != null) ? ChatMessage.FileTransferInformation.Name : null;
             bool isImageMessage = fileName != null && fileName.Length > 0;
             if (isImageMessage) {
-                string filePath = ChatMessage.FileTransferFilepath;
+                string filePath = ChatMessage.Contents.GetEnumerator().Current.FilePath;
                 ProgressBar.Visibility = Visibility.Collapsed;
                 if (ChatMessage.Appdata != null && ChatMessage.Appdata.Length > 0) {
                     Download.Visibility = Visibility.Collapsed;
@@ -158,7 +158,7 @@ namespace Linphone.Controls {
         }
 
         private void Image_Tap(object sender, TappedRoutedEventArgs e) {
-            ImageTapped(this, ChatMessage.FileTransferFilepath);
+            ImageTapped(this, ChatMessage.Contents.GetEnumerator().Current.FilePath);
         }
     }
 }

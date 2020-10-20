@@ -45,7 +45,7 @@ namespace Linphone.Model {
         /// </summary>
         public string LatestMessage {
             get {
-                string lastText = Messages.Last().Text;
+                string lastText = Messages.Last().TextContent;
                 if (lastText == null || lastText.Length <= 0 || Messages.Last().Appdata != null) {
                     return null;
                 }
@@ -73,7 +73,7 @@ namespace Linphone.Model {
 
         public Visibility IsLastMessageImage {
             get {
-                if (Messages.Last().FileTransferFilepath != null || Messages.Last().Appdata != null || 
+                if (Messages.Last().IsFileTransfer || Messages.Last().Appdata != null || 
                     (Messages.Last().FileTransferInformation != null && Messages.Last().FileTransferInformation.Name != null)) {
                     return Visibility.Visible;
                 } else {

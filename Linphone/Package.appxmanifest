@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:mobile="http://schemas.microsoft.com/appx/manifest/mobile/windows10" IgnorableNamespaces="uap mp uap6 uap3 iot uap4 uap2 mobile">
   <Identity Name="BelledonneCommunications.Linphone" Publisher="CN=2D80E0B6-DE43-45FF-97F7-D17E115F1D12" Version="1.3.0.0" />
   <mp:PhoneIdentity PhoneProductId="ed47fa26-a45b-4bda-82e1-cdc792d1d9bd" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -23,7 +23,7 @@
         </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="LinphoneTasks.PhoneCallTask">
           <BackgroundTasks>
-            <uap:Task Type="phoneCall" />
+            <Task Type="general" />
           </BackgroundTasks>
         </Extension>
       </Extensions>
@@ -32,19 +32,41 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="codeGeneration" />
+    <Capability Name="allJoyn" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
     <uap:Capability Name="contacts" />
     <uap:Capability Name="voipCall" />
     <uap:Capability Name="picturesLibrary" />
     <uap:Capability Name="removableStorage" />
+    <uap6:Capability Name="graphicsCapture" />
+    <uap:Capability Name="appointments" />
+    <uap3:Capability Name="backgroundMediaPlayback" />
+    <uap:Capability Name="blockedChatMessages" />
+    <uap:Capability Name="chat" />
+    <uap:Capability Name="enterpriseAuthentication" />
+    <iot:Capability Name="lowLevelDevices" />
+    <uap:Capability Name="musicLibrary" />
+    <uap:Capability Name="objects3D" />
+    <uap4:Capability Name="offlineMapsManagement" />
+    <uap:Capability Name="phoneCall" />
+    <uap2:Capability Name="phoneCallHistoryPublic" />
+    <mobile:Capability Name="recordedCallsFolder" />
+    <uap3:Capability Name="remoteSystem" />
+    <uap:Capability Name="sharedUserCertificates" />
+    <uap2:Capability Name="spatialPerception" />
+    <iot:Capability Name="systemManagement" />
+    <uap:Capability Name="userAccountInformation" />
+    <uap4:Capability Name="userDataTasks" />
+    <uap3:Capability Name="userNotificationListener" />
+    <uap:Capability Name="videosLibrary" />
     <DeviceCapability Name="microphone" />
     <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="bluetooth" />
+    <DeviceCapability Name="gazeInput" />
+    <DeviceCapability Name="location" />
+    <DeviceCapability Name="lowLevel" />
+    <DeviceCapability Name="pointOfService" />
+    <DeviceCapability Name="proximity" />
   </Capabilities>
-  <Extensions>
-    <Extension Category="windows.activatableClass.inProcessServer">
-      <InProcessServer>
-        <Path>MSWinRTVideo.dll</Path>
-        <ActivatableClass ActivatableClassId="MSWinRTVideo.SchemeHandler" ThreadingModel="both" />
-      </InProcessServer>
-    </Extension>
-  </Extensions>
 </Package>

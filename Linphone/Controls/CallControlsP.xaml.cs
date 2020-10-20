@@ -51,7 +51,7 @@ namespace Linphone.Controls {
         public CallControlsP() {
             InitializeComponent();
             microphone.IsChecked = LinphoneManager.Instance.Core.MicEnabled;
-            camera.IsEnabled = LinphoneManager.Instance.IsVideoAvailable && LinphoneManager.Instance.NumberOfCameras > 1;
+            camera.IsEnabled = LinphoneManager.Instance.IsVideoAvailable && LinphoneManager.Instance.NumberOfCameras >= 1;
         }
 
         #region Button enabled/disabled 

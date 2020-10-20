@@ -297,11 +297,12 @@ namespace Linphone.Model {
                     dict[TransportKeyName] = EnumToTransport[proxyAddress.Transport];
                     dict[UsernameKeyName] = address.Username;
                     dict[DomainKeyName] = address.Domain;
-                    dict[OutboundProxyKeyName] = (cfg.Route != null && cfg.Route.Length > 0).ToString();
+                    if(cfg.Routes != null && cfg.Routes.GetEnumerator().Current != null)
+                        dict[OutboundProxyKeyName] = cfg.Routes.GetEnumerator().Current.ToString();
                     dict[ExpireKeyName] = String.Format("{0}", cfg.Expires);
                     AuthInfo authInfo = LinphoneManager.Instance.Core.FindAuthInfo(address.Domain, address.Username, address.Domain);
                     if (authInfo != null) {
-                        dict[PasswordKeyName] = authInfo.Passwd;
+                        dict[PasswordKeyName] = authInfo.Password;
                         dict[UserIdKeyName] = authInfo.Userid;
                     }
                     if (cfg.NatPolicy == null) cfg.NatPolicy = LinphoneManager.Instance.Core.CreateNatPolicy();
@@ -395,8 +396,7 @@ namespace Linphone.Model {
                     if (result != 0) {
                         cfg.Expires = result;
                     }
-
-                    var auth = lc.CreateAuthInfo(username, userid, password, "", "", domain);
+                    var auth = Factory.Instance.CreateAuthInfo(username, userid, password, "", "", domain);
                     lc.AddAuthInfo(auth);
 
                     lc.AddProxyConfig(cfg);
